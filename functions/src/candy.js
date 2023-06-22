@@ -22,3 +22,15 @@ export async function addNewCandy(req, res){
         res.status(500).send(error);
     }
 }
+
+export async function updateCandyById(req, res){
+    try{
+        //const candyId = req.params.id;
+        const { id } = req.params; // which Id to apply changes to
+        const newData = req.body; // what changes to make (ex. {"price": 2.99})
+        const updateCandy = await coll.doc(id).update(newData); // update document
+        res.status(200).send(updateCandy);
+    } catch(error){
+        res.status(500).send(error);
+    }
+}
